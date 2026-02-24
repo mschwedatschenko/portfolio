@@ -3,11 +3,286 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>mary schwedatschenko</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: sans-serif;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        border-bottom: 1px solid #333;
+      }
+
+      /* HEADER */
+      header {
+        text-align: center;
+        padding: 120px 20px 80px 20px;
+        background: #1e1e1e;
+        border-bottom: 1px solid #333;
+      }
+
+      header img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #58a6ff;
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        color: #ffffff;
+        margin-bottom: 10px;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        color: #aaa;
+      }
+
+      /* ABOUT */
+      #about {
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      #about h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        border-left: 4px solid #58a6ff;
+        padding-left: 12px;
+        margin-bottom: 30px;
+      }
+
+      #about p {
+        color: #aaa;
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .skill-badge {
+        display: inline-block;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+        border-radius: 6px;
+        padding: 6px 14px;
+        margin: 4px;
+        font-size: 0.9rem;
+      }
+
+      /* PROJECTS */
+      #projects {
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      #projects h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        border-left: 4px solid #58a6ff;
+        padding-left: 12px;
+        margin-bottom: 30px;
+      }
+
+      .card {
+        border: 1px solid #333 !important;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: #58a6ff !important;
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #1e1e1e;
+        border-top: 1px solid #333;
+        padding: 60px 20px;
+        text-align: center;
+        color: #bbb;
+      }
+
+      footer h2 {
+        color: #ffffff;
+        margin-bottom: 20px;
+      }
+
+      footer a {
+        color: #58a6ff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* MODAL */
+      .modal-content {
+        background: #1e1e1e;
+        border: 1px solid #333;
+        color: #e0e0e0;
+      }
+
+      .modal-header {
+        border-bottom: 1px solid #333;
+      }
+
+      .modal-footer {
+        border-top: 1px solid #333;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hi</h1>
-    <p>Welcome to my website</p>
-    <img src="/images/cat.jpg" alt="My photo" />
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">mary schwedatschenko</a>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+      <img src="/images/cat.jpg" alt="My photo" />
+      <h1>mary schwedatschenko</h1>
+      <p>ece + cs student</p>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi! I'm Mary, a student studying Electrical & Computer Engineering with a minor in Computer Science at WPI.
+        My projects mainly involve hardware/software integration, with focus in PCB design, RTL design, and programming in C, C++, Python, VHDL, and Verilog. 
+        I am passionate about learning new technologies and applying them to my projects.
+      </p>
+      <p>
+        Outside of school, you can find me in the lab, in the IEEE lounge, or studying in Starbucks.
+      </p>
+      <div class="mt-4">
+        <p class="text-white mb-2">Skills & Tools:</p>
+        <span class="skill-badge">PCB Design</span>
+        <span class="skill-badge">C++</span>
+        <span class="skill-badge">Python</span>
+        <span class="skill-badge">Node.js</span>
+        <span class="skill-badge">JavaScript</span>
+        <span class="skill-badge">HTML/CSS</span>
+        <span class="skill-badge">Git</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="row g-4">
+
+        <!-- PROJECT 1 -->
+        <div class="col-md-6">
+          <div class="card bg-dark text-white h-100">
+            <img src="/images/macropad_layout.png" class="card-img-top" alt="Custom Macropad PCB" />
+            <div class="card-body">
+              <h5 class="card-title">Custom Macropad PCB</h5>
+              <div class="mb-2">
+                <span class="badge bg-primary">PCB Design</span>
+                <span class="badge bg-secondary">Hardware</span>
+              </div>
+              <p class="card-text text-secondary">A short description of what this project does and what you learned building it.</p>
+            </div>
+            <div class="card-footer d-flex gap-2 bg-dark border-top border-secondary">
+              <a href="https://github.com/mschwedatschenko/macropad" class="btn btn-outline-light btn-sm">View on GitHub</a>
+              <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#macropadModal">Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="col-md-6">
+          <div class="card bg-dark text-white h-100">
+            <img src="/images/project2.jpg" class="card-img-top" alt="Project Two" />
+            <div class="card-body">
+              <h5 class="card-title">Project Two</h5>
+              <div class="mb-2">
+                <span class="badge bg-success">Node.js</span>
+                <span class="badge bg-warning text-dark">JavaScript</span>
+              </div>
+              <p class="card-text text-secondary">A short description of what this project does and what you learned building it.</p>
+            </div>
+            <div class="card-footer d-flex gap-2 bg-dark border-top border-secondary">
+              <a href="https://github.com/mschwedatschenko" class="btn btn-outline-light btn-sm">View on GitHub</a>
+              <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#project2Modal">Learn More</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: <a href="mailto:mschwedatschenko@wpi.edu">mschwedatschenko@wpi.edu</a></p>
+      <p>GitHub: <a href="https://github.com/mschwedatschenko">github.com/mschwedatschenko</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/maryschwed">linkedin.com/in/maryschwed</a></p>
+    </footer>
+
+    <!-- MODAL: Macropad -->
+    <div class="modal fade" id="macropadModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Custom Macropad PCB</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img src="/images/macropad_layout.png" class="img-fluid rounded mb-3" alt="Macropad" />
+            <p>Add a longer description of your macropad project here — what inspired it, how you designed the PCB, what challenges you ran into, and what you learned.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="https://github.com/mschwedatschenko/macropad" class="btn btn-primary">View on GitHub</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: Project Two -->
+    <div class="modal fade" id="project2Modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Project Two</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img src="/images/project2.jpg" class="img-fluid rounded mb-3" alt="Project Two" />
+            <p>Add a longer description of your second project here.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="https://github.com/mschwedatschenko" class="btn btn-primary">View on GitHub</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
