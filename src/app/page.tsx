@@ -83,7 +83,7 @@ export default function HomePage() {
 					<h1 className="mb-3 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl md:text-6xl">
 						mary schwedatschenko
 					</h1>
-					<p className="mx-auto max-w-3xl whitespace-nowrap text-base text-slate-300 sm:text-lg">
+					<p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
 						building things at the intersection of{" "}
 						<span className="font-medium text-violet-300">electrical engineering</span> and{" "}
 						<span className="font-medium text-violet-300">computer science</span>
@@ -145,9 +145,7 @@ export default function HomePage() {
 				</div>
 				<div className="mx-auto max-w-4xl">
 					<p className="text-base leading-relaxed text-slate-200 sm:text-lg">
-						i&apos;m a student at wpi. i like taking ideas from schematics and simulations
-						all the way to hardware that works in the lab — fpga data acquisition, embedded systems,
-						pcb design, and tools that let you see what your hardware is doing in real time.
+					i'm an ece student at wpi, focused on the gap between simulation and something you can actually probe with an oscilloscope. My work spans FPGAs, embedded systems, PCB design, and hardware diagnostic tools.
 					</p>
 					<p className="mt-4 text-sm text-slate-400">
 						tools: fpgas, arm mcus, pcb design, c/c++, verilog/vhdl, python, linux, git
