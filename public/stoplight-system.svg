@@ -1,0 +1,19 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#0B0B10"/>
+  <rect x="40" y="40" width="1120" height="595" rx="24" fill="#111827" stroke="#374151"/>
+  <rect x="200" y="110" width="260" height="420" rx="26" fill="#0F172A" stroke="#64748B"/>
+  <circle cx="330" cy="210" r="62" fill="#EF4444"/>
+  <circle cx="330" cy="320" r="62" fill="#F59E0B"/>
+  <circle cx="330" cy="430" r="62" fill="#22C55E"/>
+  <rect x="520" y="130" width="620" height="380" rx="20" fill="#0B1220" stroke="#334155"/>
+  <rect x="560" y="175" width="200" height="80" rx="12" fill="#7C3AED"/>
+  <text x="615" y="225" fill="#F8FAFC" font-size="30" font-family="Helvetica, Arial, sans-serif">idle</text>
+  <rect x="810" y="175" width="260" height="80" rx="12" fill="#2563EB"/>
+  <text x="870" y="225" fill="#F8FAFC" font-size="30" font-family="Helvetica, Arial, sans-serif">north-south</text>
+  <rect x="690" y="320" width="260" height="80" rx="12" fill="#14B8A6"/>
+  <text x="762" y="370" fill="#F8FAFC" font-size="30" font-family="Helvetica, Arial, sans-serif">east-west</text>
+  <path d="M760 255L860 255" stroke="#A78BFA" stroke-width="6"/>
+  <path d="M940 255L820 320" stroke="#A78BFA" stroke-width="6"/>
+  <path d="M700 320L620 255" stroke="#A78BFA" stroke-width="6"/>
+  <text x="70" y="585" fill="#E2E8F0" font-size="46" font-family="Helvetica, Arial, sans-serif">stoplight system finite-state machine</text>
+</svg>

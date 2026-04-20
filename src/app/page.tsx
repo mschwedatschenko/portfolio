@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ProjectCard } from "~/components/ProjectCard";
 import { ProjectModal } from "~/components/ProjectModal";
@@ -71,15 +70,6 @@ export default function HomePage() {
 			{/* HEADER */}
 			<header id="top" className="mb-16 text-center">
 				<div className="mx-auto max-w-3xl">
-					<div className="mb-8 inline-block">
-						<Image
-							src="/cat.jpg"
-							alt="My photo"
-							width={150}
-							height={150}
-							className="rounded-full border border-slate-700/70 bg-slate-900/60 object-cover shadow-xl shadow-sky-900/40"
-						/>
-					</div>
 					<h1 className="mb-3 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl md:text-6xl">
 						mary schwedatschenko
 					</h1>
@@ -101,15 +91,15 @@ export default function HomePage() {
 				<div className="rounded-3xl border border-slate-800/70 bg-slate-950/60 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.7)]">
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 						<ProjectCard
-							image="/cat.jpg"
+							image="/spectrum-visualizer.svg"
 							title="campus rf spectrum visualizer"
 							badges={["rtl-sdr", "raspberry pi", "led matrix"]}
 							description="a light art installation that visualizes real-time radio frequency activity on campus using an rtl-sdr, raspberry pi fft pipeline, and a custom hub75 led matrix display."
-							github="https://github.com/mschwedatschenko/macropad"
+							github="https://github.com/mschwedatschenko/SpectrumVisualizer"
 							onLearnMore={() => openModal("macropad")}
 						/>
 						<ProjectCard
-							image="/cat.jpg"
+							image="/zynq-data-acq.svg"
 							title="zynq fpga data acquisition"
 							badges={["zynq-7000", "verilog", "axi"]}
 							description="a verilog-based data acquisition pipeline for simulating sipm pulses on a zynq-7000 fpga, connecting programmable logic to the arm processor over axi for real-time readout."
@@ -121,15 +111,15 @@ export default function HomePage() {
 							title="custom macropad pcb"
 							badges={["pcb design", "kicad", "c++"]}
 							description="a custom macropad pcb with switch matrix and diode isolation designed in kicad, paired with arduino-based firmware for usb hid and matrix scanning."
-							github="https://github.com/mschwedatschenko"
+							github="https://github.com/mschwedatschenko/Macropad"
 							onLearnMore={() => openModal("project3")}
 						/>
 						<ProjectCard
-							image="/cat.jpg"
-							title="project four"
-							badges={["Python", "Tooling"]}
-							description="A placeholder for a future tool, script, or automation project you want to highlight."
-							github="https://github.com/mschwedatschenko"
+							image="/stoplight-system.svg"
+							title="stoplight system"
+							badges={["c", "fsm", "embedded"]}
+							description="a non-blocking traffic light finite-state machine in c built around clean state transitions and predictable timing."
+							github="https://github.com/mschwedatschenko/stoplight-system"
 							onLearnMore={() => openModal("project4")}
 						/>
 					</div>
@@ -218,33 +208,33 @@ export default function HomePage() {
 				isOpen={!!modals.macropad}
 				onClose={() => closeModal("macropad")}
 				title="campus rf spectrum visualizer"
-				image="/macropad_layout.png"
+				image="/spectrum-visualizer.svg"
 				description="a light art installation that turns campus rf activity into motion and color. it uses an rtl-sdr dongle feeding a raspberry pi fft pipeline, driving a custom hub75 led matrix behind frosted acrylic so wireless activity becomes a real-time visual."
-				github="https://github.com/mschwedatschenko"
+				github="https://github.com/mschwedatschenko/SpectrumVisualizer"
 			/>
 			<ProjectModal
 				isOpen={!!modals.project2}
 				onClose={() => closeModal("project2")}
 				title="zynq fpga data acquisition"
-				image="/cat.jpg"
+				image="/zynq-data-acq.svg"
 				description="a vhdl-based data acquisition chain for simulated sipm (silicon photomultiplier) pulses on a zynq-7000 fpga. programmable logic captures and processes events, then hands data to the arm processor over axi for real-time readout and analysis."
-				github="https://github.com/mschwedatschenko"
+				github="https://github.com/mschwedatschenko/sipm_data_acq"
 			/>
 			<ProjectModal
 				isOpen={!!modals.project3}
 				onClose={() => closeModal("project3")}
 				title="custom macropad pcb"
-				image="/cat.jpg"
+				image="/macropad_layout.png"
 				description="a custom macropad pcb designed in kicad with a switch matrix and diode isolation, paired with arduino micro firmware in c++ for usb hid, debouncing, and matrix scanning."
-				github="https://github.com/mschwedatschenko/macropad"
+				github="https://github.com/mschwedatschenko/Macropad"
 			/>
 			<ProjectModal
 				isOpen={!!modals.project4}
 				onClose={() => closeModal("project4")}
-				title="project four"
-				image="/cat.jpg"
-				description="placeholder for a fourth project — maybe a tool, script, or something fun you want to show off."
-				github="https://github.com/mschwedatschenko"
+				title="stoplight system"
+				image="/stoplight-system.svg"
+				description="a c-based traffic light controller implemented as a finite-state machine. this project focuses on non-blocking timing, readable state logic, and embedded-friendly structure."
+				github="https://github.com/mschwedatschenko/stoplight-system"
 			/>
 		</>
 	);

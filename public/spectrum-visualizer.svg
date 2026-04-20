@@ -1,0 +1,15 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#09090B"/>
+  <rect x="40" y="40" width="1120" height="595" rx="24" fill="#111827" stroke="#374151"/>
+  <rect x="80" y="80" width="1040" height="220" rx="16" fill="#0F172A"/>
+  <path d="M110 240C150 220 180 160 220 170C260 180 290 260 330 250C370 240 400 150 440 140C480 130 510 240 550 245C590 250 620 180 660 175C700 170 730 235 770 240C810 245 840 210 880 185C920 160 950 140 990 145C1030 150 1060 200 1090 230" stroke="#A78BFA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M110 260C150 260 180 110 220 115C260 120 290 230 330 210C370 190 400 100 440 95C480 90 510 225 550 230C590 235 620 150 660 145C700 140 730 215 770 220C810 225 840 170 880 155C920 140 950 110 990 120C1030 130 1060 180 1090 200" stroke="#22D3EE" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+  <circle cx="170" cy="420" r="54" fill="#1E293B" stroke="#64748B"/>
+  <circle cx="170" cy="420" r="30" fill="#0EA5E9"/>
+  <rect x="260" y="370" width="860" height="100" rx="14" fill="#0B1220" stroke="#334155"/>
+  <rect x="285" y="395" width="210" height="50" rx="10" fill="#7C3AED"/>
+  <rect x="515" y="395" width="180" height="50" rx="10" fill="#0EA5E9"/>
+  <rect x="715" y="395" width="190" height="50" rx="10" fill="#14B8A6"/>
+  <rect x="925" y="395" width="170" height="50" rx="10" fill="#6366F1"/>
+  <text x="80" y="585" fill="#E2E8F0" font-size="46" font-family="Helvetica, Arial, sans-serif">campus rf spectrum visualizer</text>
+</svg>
