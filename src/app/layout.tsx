@@ -20,14 +20,10 @@ export default function RootLayout({
 				<link rel="manifest" href="/favicon/site.webmanifest"/>
 			</head>
 			<body
-				className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-900 text-foreground antialiased"
+				className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-foreground antialiased"
 				style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
 			>
 				<div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-					{/* subtle background glow */}
-					<div className="pointer-events-none fixed inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl">
-						<div className="relative left-1/2 aspect-[1108/632] w-[72rem] -translate-x-1/2 bg-gradient-to-tr from-violet-600/30 via-fuchsia-500/18 to-violet-400/28 opacity-60" />
-					</div>
 					{children}
 				</div>
 			</body>

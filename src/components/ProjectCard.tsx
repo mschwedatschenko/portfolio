@@ -18,7 +18,7 @@ export const ProjectCard = ({
 	github,
 	onLearnMore,
 }: ProjectCardProps) => (
-	<div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-slate-950/90 text-white shadow-[0_18px_45px_rgba(15,23,42,0.8)] transition-transform duration-200 hover:-translate-y-1.5 hover:border-slate-600/60 hover:shadow-[0_24px_48px_rgba(0,0,0,0.35)]">
+	<div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-slate-950/90 text-white shadow-[0_18px_45px_rgba(15,23,42,0.8)] transition-transform duration-200 hover:-translate-y-1.5 hover:border-violet-400/45 hover:shadow-[0_24px_48px_rgba(0,0,0,0.35)]">
 		<div className="relative h-48 w-full overflow-hidden rounded-t-2xl bg-slate-900">
 			<Image
 				src={image}
@@ -39,7 +39,7 @@ export const ProjectCard = ({
 				{badges.map((badge, i) => (
 					<span
 						key={i}
-						className="rounded-full bg-slate-900/90 px-2.5 py-1 text-[0.7rem] font-medium text-slate-200 ring-1 ring-violet-400/35"
+						className="rounded-full bg-slate-900/90 px-2.5 py-1 text-[0.7rem] font-medium text-slate-200 ring-1 ring-slate-700 transition group-hover:ring-violet-400/45"
 					>
 						{badge}
 					</span>
@@ -56,14 +56,14 @@ export const ProjectCard = ({
 			>
 				<Button
 					variant="outline"
-					className="w-full border-slate-700/80 bg-slate-900/60 text-slate-100 hover:border-violet-400/70 hover:bg-slate-900"
+					className="w-full border-slate-700/80 bg-slate-900/60 text-slate-100 hover:border-violet-400/65 hover:bg-slate-900"
 				>
 					view on github
 				</Button>
 			</a>
 			<Button
 				onClick={onLearnMore}
-				className="flex-1 bg-violet-600 text-slate-50 hover:bg-violet-500"
+				className="flex-1 border border-slate-700 bg-slate-900/70 text-slate-100 hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200"
 			>
 				learn more
 			</Button>
