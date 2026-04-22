@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "~/components/ui/button";
 
 interface ProjectCardProps {
@@ -6,8 +7,9 @@ interface ProjectCardProps {
 	title: string;
 	badges: string[];
 	description: string;
-	github: string;
-	onLearnMore: () => void;
+	github?: string;
+	learnMoreHref?: string;
+	onLearnMore?: () => void;
 }
 
 export const ProjectCard = ({
@@ -16,6 +18,7 @@ export const ProjectCard = ({
 	badges,
 	description,
 	github,
+	learnMoreHref,
 	onLearnMore,
 }: ProjectCardProps) => (
 	<div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800/80 bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-slate-950/90 text-white shadow-[0_18px_45px_rgba(15,23,42,0.8)] transition-transform duration-200 hover:-translate-y-1.5 hover:border-violet-400/45 hover:shadow-[0_24px_48px_rgba(0,0,0,0.35)]">
@@ -48,25 +51,39 @@ export const ProjectCard = ({
 			<p className="flex-1 text-sm text-slate-300">{description}</p>
 		</div>
 		<div className="flex gap-2 p-6 pt-0">
-			<a
-				href={github}
-				target="_blank"
-				rel="noopener noreferrer"
-				className="flex-1"
-			>
-				<Button
-					variant="outline"
-					className="w-full border-slate-700/80 bg-slate-900/60 text-slate-100 hover:border-violet-400/65 hover:bg-slate-900"
+			{github ? (
+				<a
+					href={github}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="flex-1"
 				>
-					view on github
+					<Button
+						variant="outline"
+						className="w-full border-slate-700/80 bg-slate-900/60 text-slate-100 hover:border-violet-400/65 hover:bg-slate-900"
+					>
+						view on github
+					</Button>
+				</a>
+			) : null}
+			{learnMoreHref ? (
+				<Link className={github ? "flex-1" : "w-full"} href={learnMoreHref}>
+					<Button className="w-full border border-slate-700 bg-slate-900/70 text-slate-100 hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200">
+						learn more
+					</Button>
+				</Link>
+			) : (
+				<Button
+					onClick={onLearnMore}
+					className={
+						github
+							? "flex-1 border border-slate-700 bg-slate-900/70 text-slate-100 hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200"
+							: "w-full border border-slate-700 bg-slate-900/70 text-slate-100 hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200"
+					}
+				>
+					learn more
 				</Button>
-			</a>
-			<Button
-				onClick={onLearnMore}
-				className="flex-1 border border-slate-700 bg-slate-900/70 text-slate-100 hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200"
-			>
-				learn more
-			</Button>
+			)}
 		</div>
 	</div>
 );
