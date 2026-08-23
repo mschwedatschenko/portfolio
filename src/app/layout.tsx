@@ -1,10 +1,26 @@
 import "~/styles/globals.css";
 
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+
+const plexSans = IBM_Plex_Sans({
+	subsets: ["latin"],
+	weight: ["400", "500", "600"],
+	variable: "--font-plex-sans",
+	display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+	subsets: ["latin"],
+	weight: ["400", "500"],
+	variable: "--font-plex-mono",
+	display: "swap",
+});
 
 export const metadata: Metadata = {
-	title: "Mary Schwedatschenko | Portfolio",
-	description: "ECE + CS Student | PCB Design | Hardware/Software Integration",
+	title: "Mary Schwedatschenko",
+	description:
+		"Digital design and hardware verification. ECE at WPI, hardware engineer at Teradyne. FPGAs, ASICs, SystemVerilog, and PCB design.",
 	icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -12,20 +28,32 @@ export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en" className="dark scroll-smooth">
+		<html
+			className={`${plexSans.variable} ${plexMono.variable} scroll-smooth`}
+			lang="en"
+		>
 			<head>
-				<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
-				<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
-				<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
-				<link rel="manifest" href="/favicon/site.webmanifest"/>
+				<link
+					href="/favicon/apple-touch-icon.png"
+					rel="apple-touch-icon"
+					sizes="180x180"
+				/>
+				<link
+					href="/favicon/favicon-32x32.png"
+					rel="icon"
+					sizes="32x32"
+					type="image/png"
+				/>
+				<link
+					href="/favicon/favicon-16x16.png"
+					rel="icon"
+					sizes="16x16"
+					type="image/png"
+				/>
+				<link href="/favicon/site.webmanifest" rel="manifest" />
 			</head>
-			<body
-				className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-foreground antialiased"
-				style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
-			>
-				<div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-					{children}
-				</div>
+			<body className="min-h-screen bg-paper font-sans text-ink antialiased">
+				{children}
 			</body>
 		</html>
 	);

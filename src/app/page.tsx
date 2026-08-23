@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { ProjectCard } from "~/components/ProjectCard";
+import { useState } from "react";
+import { ProjectEntry } from "~/components/ProjectEntry";
 import {
-	type ProjectModalVideo,
 	ProjectModal,
+	type ProjectModalVideo,
 } from "~/components/ProjectModal";
 import { SiteFooter } from "~/components/SiteFooter";
 import { SiteNavbar } from "~/components/SiteNavbar";
@@ -16,209 +15,180 @@ const projectorModalVideo: ProjectModalVideo = {
 	src: "/videos/projector-printer.mov",
 };
 
+const sectionHeading =
+	"mb-5 font-mono text-quiet text-xs uppercase tracking-widest";
+
+const SKILLS = [
+	{
+		label: "hardware",
+		items:
+			"fpgas, pcb design, serial buses (i2c, spi, jtag), arm mcus, smt soldering, scopes and logic analyzers",
+	},
+	{
+		label: "languages",
+		items: "systemverilog, vhdl, c, c++, python, java",
+	},
+	{
+		label: "software",
+		items: "vivado design suite, git, gitlab, linux, jira",
+	},
+] as const;
+
 export default function HomePage() {
 	const [isProjectorModalOpen, setIsProjectorModalOpen] = useState(false);
-	const buildItems = [
-		{
-			text: "turning live campus rf signals into visuals with rtl-sdr + raspberry pi + hub75 led panels.",
-			link: "https://github.com/mschwedatschenko/SpectrumVisualizer",
-		},
-		{
-			text: "building a fast acquisition path for signal data on zynq with programmable logic and axi transfer.",
-			link: "https://github.com/mschwedatschenko/sipm_data_acq",
-		},
-		{
-			text: "developing a posture coach for people with scoliosis using esp8266 and an rtos.",
-			link: "https://github.com/mschwedatschenko/Macropad",
-		},
-	] as const;
-	const [tickerIndex, setTickerIndex] = useState(0);
-	const [tickerText, setTickerText] = useState("");
-	const [isDeleting, setIsDeleting] = useState(false);
-	const currentBuild = buildItems[tickerIndex] ?? buildItems[0];
-
-	useEffect(() => {
-		const currentText = currentBuild.text;
-		const typingSpeed = isDeleting ? 24 : 42;
-		let timeoutId: ReturnType<typeof setTimeout>;
-
-		if (!isDeleting && tickerText.length < currentText.length) {
-			timeoutId = setTimeout(() => {
-				setTickerText(currentText.slice(0, tickerText.length + 1));
-			}, typingSpeed);
-		} else if (!isDeleting && tickerText.length === currentText.length) {
-			timeoutId = setTimeout(() => {
-				setIsDeleting(true);
-			}, 1300);
-		} else if (isDeleting && tickerText.length > 0) {
-			timeoutId = setTimeout(() => {
-				setTickerText(currentText.slice(0, tickerText.length - 1));
-			}, typingSpeed);
-		} else {
-			timeoutId = setTimeout(() => {
-				setIsDeleting(false);
-				setTickerIndex((prev) => (prev + 1) % buildItems.length);
-			}, 220);
-		}
-
-		return () => clearTimeout(timeoutId);
-	}, [
-		currentBuild.text,
-		isDeleting,
-		tickerIndex,
-		tickerText,
-		buildItems.length,
-	]);
 
 	return (
 		<>
 			<SiteNavbar isHome />
 
-			{/* Hero starts at top; fixed nav overlays this image */}
-			<section className="relative right-1/2 left-1/2 mb-16 h-[62vh] min-h-[420px] w-screen -translate-x-1/2 overflow-hidden">
+			<main className="mx-auto max-w-3xl px-6" id="top">
+				<header className="border-rule border-b py-14">
+					<h1 className="font-semibold text-2xl tracking-tight sm:text-3xl">
+						mary schwedatschenko
+					</h1>
+					<p className="mt-2 text-quiet text-sm sm:text-base">
+						digital design and hardware verification. ece at wpi.
+					</p>
+				</header>
 
-				<div className="pointer-events-none absolute inset-0 translate-y-[-30%] -z-10">
-					<Image
-						alt=""
-						className="object-cover opacity-90 -scale-x-100"
-						fill
-						priority
-						src="/hero-wafer-bg.png"
-					/>
-					<div className="absolute inset-0 bg-slate-950/15" />
-					<div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-b from-transparent via-slate-950/58 to-slate-950" />
-				</div>
-
-				{/* HEADER */}
-				<header className="flex h-full items-center justify-center text-center" id="top">
-					<div className="mx-auto max-w-3xl translate-y-[-6] px-6">
-						<h1 className="mt-4 mb-3 font-semibold text-4xl text-slate-50 sm:text-5xl md:text-6xl">
-							mary schwedatschenko
-						</h1>
-						<p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
-							building things at the intersection of{" "}
-							<span className="font-medium text-violet-300">
-								electrical engineering
-							</span>{" "}
-							and{" "}
-							<span className="font-medium text-violet-300">
-								computer science
-							</span>
+				<section className="py-12" id="about">
+					<h2 className={sectionHeading}>about</h2>
+					<div className="space-y-4 text-sm leading-relaxed sm:text-base">
+						<p>
+							i'm an electrical & computer engineering major at wpi with a cs
+							minor, graduating in 2028.
+						</p>
+						<p>
+							most of what i build ends up being a piece of hardware plus
+							whatever software has to talk to it. fpga fabric handing samples
+							up to a processor. a key matrix scanned by firmware. an sdr
+							feeding an led panel. in practice that means a lot of vivado and
+							kicad, and a bench with a scope on it.
+						</p>
+						<p>
+							i spent last summer interning at teradyne, writing systemverilog
+							for spi, i2c, and a frequency generator and then verifying them on
+							the bench. getting a design to pass in simulation turned out to be
+							the easy half. the things i actually learned from were the ones
+							that only showed up with a scope on real hardware. lately i've
+							been writing built-in self test for ddr sram, which i've found
+							more interesting than i expected. memory doesn't just fail, it
+							fails in specific characterizable ways, and you can write a
+							pattern that goes hunting for each one. it's the same instinct
+							that keeps me in wpi's plasma & nuclear diagnostics lab: i'd
+							rather own the address map than trust a framework to tell me the
+							truth.
 						</p>
 					</div>
-				</header>
-			</section>
+				</section>
 
-			{/* ABOUT */}
-			<section className="mb-16" id="about">
-				<div className="mb-5">
-					<h2 className="text-left font-semibold text-2xl text-slate-50 tracking-tight sm:text-3xl">
-						about
-					</h2>
-				</div>
-				<div className="mx-auto max-w-4xl">
-					<p className="text-base text-slate-200 leading-relaxed sm:text-lg">
-						i'm an ece/cs student at wpi! my work spans FPGAs, embedded systems,
-						PCB design, and hardware diagnostic tools.
-					</p>
-					<p className="mt-4 text-base text-violet-300/85 sm:text-lg">
-						<span className="font-semibold text-slate-100">
-							i&apos;m currently working on{" "}
-						</span>
-						{tickerText}
-						<span className="ml-0.5 inline-block h-4 w-[2px] translate-y-[2px] animate-pulse bg-violet-300" />
-					</p>
-				</div>
-			</section>
-
-			{/* PROJECTS */}
-			<section className="mb-20" id="projects">
-				<div className="mb-6">
-					<h2 className="text-left font-semibold text-2xl text-slate-50 tracking-tight sm:text-3xl">
-						projects
-					</h2>
-				</div>
-				<div className="rounded-3xl border border-slate-800/70 bg-slate-950/60 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.7)]">
-					<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-						<ProjectCard
-							badges={["rtl-sdr", "raspberry pi", "led matrix"]}
-							description="a light art installation that visualizes real-time radio frequency activity on campus using an rtl-sdr, raspberry pi fft pipeline, and a custom hub75 led matrix display."
-							github="https://github.com/mschwedatschenko/SpectrumVisualizer"
-							image="/spectrum-visualizer.svg"
-							learnMoreHref="/projects/campus-rf-spectrum-visualizer"
-							title="campus rf spectrum visualizer"
-						/>
-						<ProjectCard
-							badges={["zynq-7000", "verilog", "axi"]}
-							description="a verilog-based data acquisition pipeline for simulating sipm pulses on a zynq-7000 fpga, connecting programmable logic to the arm processor over axi for real-time readout."
+				<section className="border-rule border-t py-12" id="projects">
+					<h2 className={sectionHeading}>projects</h2>
+					<div>
+						<ProjectEntry
+							description="verilog on a zynq-7000 that generates sipm-like pulses in fabric, captures them into block ram on a trigger, and hands the buffer up to the arm side over axi. the goal is keeping the timing-critical part in programmable logic so the processor never has to be fast. it just has to show up after the capture is done. ongoing research in wpi's plasma & nuclear diagnostics lab."
+							detailHref="/projects/zynq-fpga-data-acquisition"
 							github="https://github.com/mschwedatschenko/sipm_data_acq"
 							image="/zynq-block-diagram.png"
-							learnMoreHref="/projects/zynq-fpga-data-acquisition"
+							imageFit="contain"
+							tech={["zynq-7000", "verilog", "axi", "vivado"]}
 							title="zynq fpga data acquisition"
+							year="since 2025"
 						/>
-						<ProjectCard
-							badges={["pcb design", "kicad", "c++"]}
-							description="a custom macropad pcb with switch matrix and diode isolation designed in kicad, paired with arduino-based firmware for usb hid and matrix scanning."
+						<ProjectEntry
+							description="an rtl-sdr v4 on a raspberry pi 4 pulls raw iq samples continuously and computes fft spectrums across several frequency bands in python and numpy, driving an led display housed in a casing i designed and 3d-printed. everything in the chain has to finish inside a frame, which is what turned it from a signal processing exercise into a real-time one."
+							detailHref="/projects/campus-rf-spectrum-visualizer"
+							github="https://github.com/mschwedatschenko/SpectrumVisualizer"
+							image="/spectrum-visualizer.jpg"
+							tech={["rtl-sdr v4", "raspberry pi 4", "python", "numpy"]}
+							title="campus rf spectrum visualizer"
+							year="2026"
+						/>
+						<ProjectEntry
+							description="nine keys in a 3×3 matrix, each with its own diode so holding three at once doesn't produce phantom presses. i drew the whole board in kicad, down to the footprints and the angled outline, and wrote firmware for an arduino micro that scans the matrix, debounces, and enumerates as a plain usb keyboard."
+							detailHref="/projects/custom-macropad-pcb"
 							github="https://github.com/mschwedatschenko/Macropad"
 							image="/macropad_layout.png"
-							learnMoreHref="/projects/custom-macropad-pcb"
+							imageFit="contain"
+							tech={["kicad", "c++", "arduino micro", "usb hid"]}
 							title="custom macropad pcb"
+							year="2025"
 						/>
-						<ProjectCard
-							badges={["arduino"]}
-							description="custom DLP stereolithography 3D printer, integrating a hand-fabricated mechanical frame, Arduino-controlled Z-axis motion, and projector-based layer exposure to produce multi-layer resin parts."
+						<ProjectEntry
+							description="a resin printer that cures each layer with a projector instead of a laser, which collapses the whole motion problem down to one axis. plywood enclosure i cut myself, lead screw z-stage driven by a stepper, and electronics still on a breadboard because it started as a bring-up rig and never needed to stop being one."
 							image="/projector-printer.png"
-							onLearnMore={() => setIsProjectorModalOpen(true)}
+							onOpen={() => setIsProjectorModalOpen(true)}
+							tech={["arduino", "stepper control", "fabrication"]}
 							title="projector-based sla 3d printer"
+							year="2025"
 						/>
 					</div>
-				</div>
-			</section>
+				</section>
 
-			{/* EDUCATION — compact */}
-			<section className="mb-16" id="education">
-				<div className="mb-5">
-					<h2 className="text-left font-semibold text-2xl text-slate-50 tracking-tight sm:text-3xl">
-						education
-					</h2>
-				</div>
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					<div className="rounded-2xl border border-slate-800/70 bg-slate-950/70 p-5">
-						<p className="font-semibold text-base text-slate-100">
-							worcester polytechnic institute
-						</p>
-						<ul className="mt-2 space-y-1.5 text-slate-300 text-sm">
-							<li>b.s. electrical & computer engineering</li>
-							<li>minor in computer science</li>
-							<li>class of 2028 · worcester, ma</li>
-							<li>dean's list, presidential scholarship</li>
-						</ul>
+				<section className="border-rule border-t py-12" id="skills">
+					<h2 className={sectionHeading}>skills</h2>
+					<dl className="space-y-3 text-sm">
+						{SKILLS.map(({ label, items }) => (
+							<div className="sm:flex sm:gap-6" key={label}>
+								<dt className="w-24 shrink-0 font-mono text-quiet text-xs uppercase tracking-widest sm:pt-0.5">
+									{label}
+								</dt>
+								<dd className="mt-1 sm:mt-0">{items}</dd>
+							</div>
+						))}
+					</dl>
+				</section>
+
+				<section className="border-rule border-t py-12" id="education">
+					<h2 className={sectionHeading}>education</h2>
+					<div className="space-y-8 text-sm">
+						<div>
+							<div className="flex flex-wrap items-baseline justify-between gap-x-4">
+								<p className="font-medium">worcester polytechnic institute</p>
+								<span className="font-mono text-quiet text-xs">
+									aug 2024 to may 2028
+								</span>
+							</div>
+							<p className="mt-1 text-quiet">
+								b.s. electrical & computer engineering, minor in computer
+								science. gpa 3.7/4.0. dean's list and presidential scholarship.
+							</p>
+							<p className="mt-3">
+								<span className="font-mono text-quiet text-xs uppercase tracking-widest">
+									coursework
+								</span>
+								<br />
+								<span className="text-quiet">
+									advanced digital system design (rtl-to-tapeout asic flow),
+									digital design with fpgas, real-time embedded systems, analog
+									circuit design, algorithms & data structures, continuous-time
+									& discrete-time signal analysis
+								</span>
+							</p>
+						</div>
+						<div>
+							<p className="font-medium">outside of coursework</p>
+							<p className="mt-2 text-quiet leading-relaxed">
+								i'm president of wpi's ieee student branch, and i ta for
+								ece2039, computational engineering, which has taught me more
+								about the material than taking it ever did. i also sit on the
+								ece student advisory board, run pr for our acm chapter, and
+								serve as director of career development for chi omega. before
+								any of that, back in 2022, i spent a summer in uiuc's
+								micro-nano-mechanical systems cleanroom running
+								photolithography: substrate prep, spin-coating, uv exposure,
+								developing. that's where i first got curious about how chips
+								actually get made.
+							</p>
+						</div>
 					</div>
-					<div className="rounded-2xl border border-slate-800/70 bg-slate-950/70 p-5">
-						<p className="font-semibold text-base text-slate-100">
-							extracurricular involvement
-						</p>
-						<ul className="mt-2 space-y-1.5 text-slate-300 text-sm">
-							<li>president, ieee wpi student branch</li>
-							<li>
-								research assistant, wpi plasma &amp; nuclear diagnostics lab
-							</li>
-							<li>
-								public relations chair, association of computing machinery
-							</li>
-							<li>
-								director of career development, chi omega women's fraternity
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
+				</section>
 
-			<SiteFooter />
+				<SiteFooter />
+			</main>
 
-			{/* SLA printer modal kept as requested */}
 			<ProjectModal
-				description="a diy sla resin printer build using projected light for exposure, with custom plywood enclosure, lead-screw z motion, and arduino-based electronics on breadboard for bring-up and control."
+				description="the enclosure open on the bench, mid bring-up. the red board is driving the lead screw stepper and the projector sits underneath, firing each layer up into the vat."
 				image="/projector-printer.png"
 				isOpen={isProjectorModalOpen}
 				onClose={() => setIsProjectorModalOpen(false)}

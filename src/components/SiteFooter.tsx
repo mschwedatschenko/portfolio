@@ -1,48 +1,40 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+const LINKS = [
+	{
+		label: "mschwedatschenko@wpi.edu",
+		href: "mailto:mschwedatschenko@wpi.edu",
+	},
+	{ label: "github", href: "https://github.com/mschwedatschenko" },
+	{ label: "linkedin", href: "https://linkedin.com/in/maryschwed" },
+] as const;
 
 export function SiteFooter() {
 	return (
-		<footer
-			className="relative right-1/2 left-1/2 mt-20 w-screen -translate-x-1/2 px-6 py-12 text-center text-slate-400"
-			id="contact"
-		>
-			<div className="mx-auto max-w-2xl space-y-4">
-				<div className="mb-2">
-					<h2 className="font-semibold text-lg text-slate-50 tracking-tight">
-						contact
-					</h2>
-				</div>
-				<div className="flex items-center justify-center gap-5">
-					<a
-						aria-label="email mary"
-						className="rounded-full border border-slate-700 bg-slate-900/60 p-2.5 text-slate-300 transition hover:border-violet-400 hover:text-violet-300"
-						href="mailto:mschwedatschenko@wpi.edu"
-					>
-						<Mail className="h-5 w-5" />
-					</a>
-					<a
-						aria-label="mary github"
-						className="rounded-full border border-slate-700 bg-slate-900/60 p-2.5 text-slate-300 transition hover:border-violet-400 hover:text-violet-300"
-						href="https://github.com/mschwedatschenko"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<Github className="h-5 w-5" />
-					</a>
-					<a
-						aria-label="mary linkedin"
-						className="rounded-full border border-slate-700 bg-slate-900/60 p-2.5 text-slate-300 transition hover:border-violet-400 hover:text-violet-300"
-						href="https://linkedin.com/in/maryschwed"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<Linkedin className="h-5 w-5" />
-					</a>
-				</div>
-				<p className="pt-2 text-slate-500 text-xs">
-					© {new Date().getFullYear()} mary schwedatschenko
-				</p>
-			</div>
+		<footer className="mt-20 border-rule border-t py-10" id="contact">
+			<h2 className="mb-3 font-mono text-quiet text-xs uppercase tracking-widest">
+				contact
+			</h2>
+			<p className="mb-4 text-sm">
+				the fastest way to reach me is email. i'm always glad to talk about
+				anything on this page, or about fpgas, verification, and memory in
+				general.
+			</p>
+			<ul className="space-y-1 text-sm">
+				{LINKS.map(({ label, href }) => (
+					<li key={href}>
+						<a
+							className="underline decoration-rule underline-offset-4 hover:text-rust hover:decoration-rust"
+							href={href}
+							rel="noopener noreferrer"
+							target={href.startsWith("mailto:") ? undefined : "_blank"}
+						>
+							{label}
+						</a>
+					</li>
+				))}
+			</ul>
+			<p className="mt-8 font-mono text-quiet text-xs">
+				© {new Date().getFullYear()} mary schwedatschenko
+			</p>
 		</footer>
 	);
 }

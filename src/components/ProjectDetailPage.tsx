@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "~/components/SiteFooter";
@@ -8,9 +6,9 @@ import { SiteNavbar } from "~/components/SiteNavbar";
 interface ProjectDetailPageProps {
 	title: string;
 	year: string;
-	image: string;
-	overview: string;
-	highlights: string[];
+	image?: string;
+	imageCaption?: string;
+	body: string[];
 	tech: string[];
 	github?: string;
 }
@@ -19,84 +17,79 @@ export function ProjectDetailPage({
 	title,
 	year,
 	image,
-	overview,
-	highlights,
+	imageCaption,
+	body,
 	tech,
 	github,
 }: ProjectDetailPageProps) {
 	return (
 		<>
 			<SiteNavbar />
-			<main className="pt-24 pb-12 sm:pt-28 sm:pb-14" id="top">
-				<div className="mx-auto max-w-4xl space-y-7">
+			<main className="mx-auto max-w-3xl px-6" id="top">
+				<article className="py-12">
 					<Link
-						className="inline-flex text-sm text-violet-300 transition hover:text-violet-200"
+						className="font-mono text-quiet text-xs hover:text-rust"
 						href="/#projects"
 					>
-						← back to projects
+						← projects
 					</Link>
 
-					<header className="space-y-3">
-						<p className="font-semibold text-slate-400 text-xs tracking-[0.15em] uppercase">
-							{year} project
-						</p>
-						<h1 className="font-semibold text-3xl text-slate-50 tracking-tight sm:text-4xl">
+					<header className="mt-6 flex items-baseline gap-3">
+						<h1 className="font-semibold text-xl tracking-tight sm:text-2xl">
 							{title}
 						</h1>
+						<span className="font-mono text-quiet text-xs">{year}</span>
 					</header>
 
-					<div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900">
-						<Image
-							alt={title}
-							className="object-cover"
-							fill
-							priority
-							sizes="(max-width: 1024px) 100vw, 1024px"
-							src={image}
-						/>
+					{image ? (
+						<figure className="mt-6">
+							<div className="relative aspect-video w-full overflow-hidden border border-rule bg-paper">
+								<Image
+									alt={title}
+									className="object-contain"
+									fill
+									priority
+									sizes="(max-width: 768px) 100vw, 768px"
+									src={image}
+								/>
+							</div>
+							{imageCaption ? (
+								<figcaption className="mt-2 font-mono text-quiet text-xs">
+									{imageCaption}
+								</figcaption>
+							) : null}
+						</figure>
+					) : null}
+
+					<div className="mt-8 space-y-4 text-sm leading-relaxed sm:text-base">
+						{body.map((paragraph) => (
+							<p key={paragraph}>{paragraph}</p>
+						))}
 					</div>
 
-					<section className="space-y-3">
-						<h2 className="font-semibold text-slate-100 text-xl">overview</h2>
-						<p className="text-base text-slate-200 leading-relaxed">{overview}</p>
-					</section>
-
-					<section className="space-y-3">
-						<h2 className="font-semibold text-slate-100 text-xl">highlights</h2>
-						<ul className="space-y-2 text-slate-200">
-							{highlights.map((item) => (
-								<li key={item}>• {item}</li>
-							))}
-						</ul>
-					</section>
-
-					<section className="space-y-3">
-						<h2 className="font-semibold text-slate-100 text-xl">stack + tools</h2>
-						<div className="flex flex-wrap gap-2">
-							{tech.map((item) => (
-								<span
-									key={item}
-									className="rounded-full bg-slate-900/90 px-2.5 py-1 text-[0.72rem] font-medium text-slate-200 ring-1 ring-slate-700"
-								>
-									{item}
-								</span>
-							))}
-						</div>
-					</section>
+					<dl className="mt-10 border-rule border-t pt-4 text-sm">
+						<dt className="font-mono text-quiet text-xs uppercase tracking-widest">
+							built with
+						</dt>
+						<dd className="mt-1">{tech.join(", ")}</dd>
+					</dl>
 
 					{github ? (
-						<a
-							className="inline-flex rounded-lg border border-slate-700 bg-slate-900/70 px-4 py-2 text-slate-100 transition hover:border-violet-400/65 hover:bg-violet-500/15 hover:text-violet-200"
-							href={github}
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							view on github
-						</a>
+						<p className="mt-6 text-sm">
+							<a
+								className="underline decoration-rule underline-offset-4 hover:text-rust hover:decoration-rust"
+								href={github}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								source on github
+							</a>
+						</p>
 					) : null}
-				</div>
+				</article>
+
+				<SiteFooter />
 			</main>
-			<SiteFooter />
 		</>
 	);
 }
