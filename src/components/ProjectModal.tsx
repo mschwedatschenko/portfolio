@@ -78,7 +78,7 @@ export const ProjectModal = ({
 			<p className="text-sm leading-relaxed">{description}</p>
 			{github ? (
 				<a
-					className="text-sm underline decoration-rule underline-offset-4 hover:text-rust hover:decoration-rust"
+					className="text-sm underline decoration-rule underline-offset-4 hover:text-forest hover:decoration-forest"
 					href={github}
 					rel="noopener noreferrer"
 					target="_blank"

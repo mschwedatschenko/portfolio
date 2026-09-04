@@ -20,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
 	title: "Mary Schwedatschenko",
 	description:
-		"Digital design and hardware verification. ECE at WPI, hardware engineer at Teradyne. FPGAs, ASICs, SystemVerilog, and PCB design.",
+		"Digital design and hardware verification. ECE at WPI, hardware engineer. FPGAs, ASICs, SystemVerilog, and PCB design.",
 	icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

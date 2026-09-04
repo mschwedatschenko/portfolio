@@ -3,15 +3,40 @@ import { ProjectDetailPage } from "~/components/ProjectDetailPage";
 export default function CustomMacropadPcbPage() {
 	return (
 		<ProjectDetailPage
-			body={[
-				"i wanted a board i had actually designed rather than assembled from a kit, and a nine-key macropad is about the smallest project that still makes you deal with every part of the process: schematic, footprints, routing, board outline, fab, and then firmware on the other side.",
-				"the switches sit in a 3×3 matrix so nine keys only need six microcontroller pins. the catch with matrices is ghosting: hold down three keys that share rows and columns and the scan reports a fourth one you never pressed. one diode per switch blocks the return path that causes it, which is why there are nine diodes down the right edge of the layout.",
-				"firmware runs on an arduino micro. it drives one row at a time, reads the columns, debounces in software, and reports over usb hid, so the board enumerates as an ordinary keyboard and needs no drivers on the host.",
-				"drawing it in kicad was the part i learned the most from. routing a matrix by hand teaches you quickly that the schematic being correct and the board being routable are two different problems.",
-			]}
+			commentary=""
 			github="https://github.com/mschwedatschenko/Macropad"
 			image="/macropad_layout.png"
-			imageCaption="kicad layout: 3×3 switch matrix with per-key diodes along the right edge"
+			imageCaption="KiCad layout: 3×3 switch matrix with per-key diodes along the right edge."
+			overview="Custom 3×3 mechanical macropad designed as a full schematic-to-firmware exercise: PCB layout in KiCad, board fabrication, and USB HID firmware on an Arduino Micro."
+			sections={[
+				{
+					heading: "hardware",
+					bullets: [
+						"Nine mechanical switches arranged in a 3×3 matrix, reducing I/O requirements to six microcontroller pins (three rows and three columns).",
+						"One diode per switch blocks reverse current paths that cause ghosting, enabling reliable multi-key presses without phantom detections.",
+						"Schematic, custom footprints, board outline, and hand routing completed in KiCad prior to fabrication.",
+						"Board geometry includes an angled outline chosen during layout rather than left as a default rectangle.",
+					],
+					commentary: "",
+				},
+				{
+					heading: "firmware",
+					bullets: [
+						"Firmware runs on an Arduino Micro and enumerates to the host as a standard USB HID keyboard, requiring no custom drivers.",
+						"Scan loop drives one row at a time, reads column states, applies software debouncing, and reports key events over HID.",
+						"Matrix scanning and debounce timing were tuned for reliable single- and multi-key input under normal typing cadence.",
+					],
+					commentary: "",
+				},
+				{
+					heading: "process",
+					bullets: [
+						"Project scoped as the smallest board that still exercises the full PCB workflow: schematic capture, footprints, routing, fabrication, assembly, and firmware bring-up.",
+						"Hand routing the matrix highlighted the gap between a correct schematic and a practically routable board layout.",
+					],
+					commentary: "",
+				},
+			]}
 			tech={["kicad", "c++", "arduino micro", "usb hid"]}
 			title="custom macropad pcb"
 			year="2025"

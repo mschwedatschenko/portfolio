@@ -1,14 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectCommentary, ProjectSummary } from "~/components/ProjectVoice";
 import { SiteFooter } from "~/components/SiteFooter";
 import { SiteNavbar } from "~/components/SiteNavbar";
+
+export interface ProjectDetailSection {
+	heading: string;
+	bullets: string[];
+	/** Optional personal notes — shown below the section bullets when set. */
+	commentary?: string;
+}
 
 interface ProjectDetailPageProps {
 	title: string;
 	year: string;
 	image?: string;
 	imageCaption?: string;
-	body: string[];
+	overview: string;
+	sections: ProjectDetailSection[];
+	/** Optional personal notes shown after the overview. */
+	commentary?: string;
 	tech: string[];
 	github?: string;
 }
@@ -18,7 +29,9 @@ export function ProjectDetailPage({
 	year,
 	image,
 	imageCaption,
-	body,
+	overview,
+	sections,
+	commentary,
 	tech,
 	github,
 }: ProjectDetailPageProps) {
@@ -28,7 +41,7 @@ export function ProjectDetailPage({
 			<main className="mx-auto max-w-3xl px-6" id="top">
 				<article className="py-12">
 					<Link
-						className="font-mono text-quiet text-xs hover:text-rust"
+						className="font-mono text-quiet text-xs hover:text-forest"
 						href="/#projects"
 					>
 						← projects
@@ -61,9 +74,36 @@ export function ProjectDetailPage({
 						</figure>
 					) : null}
 
-					<div className="mt-8 space-y-4 text-sm leading-relaxed sm:text-base">
-						{body.map((paragraph) => (
-							<p key={paragraph}>{paragraph}</p>
+					<div className="mt-8 space-y-8">
+						<div>
+							<ProjectSummary>
+								<p>{overview}</p>
+							</ProjectSummary>
+							{commentary ? (
+								<ProjectCommentary>
+									<p>{commentary}</p>
+								</ProjectCommentary>
+							) : null}
+						</div>
+
+						{sections.map((section) => (
+							<section key={section.heading}>
+								<h2 className="font-mono text-quiet text-xs uppercase tracking-widest">
+									{section.heading}
+								</h2>
+								<ProjectSummary labeled={false}>
+									<ul className="mt-1 list-disc space-y-2 pl-5">
+										{section.bullets.map((bullet) => (
+											<li key={bullet}>{bullet}</li>
+										))}
+									</ul>
+								</ProjectSummary>
+								{section.commentary ? (
+									<ProjectCommentary>
+										<p>{section.commentary}</p>
+									</ProjectCommentary>
+								) : null}
+							</section>
 						))}
 					</div>
 
@@ -77,7 +117,7 @@ export function ProjectDetailPage({
 					{github ? (
 						<p className="mt-6 text-sm">
 							<a
-								className="underline decoration-rule underline-offset-4 hover:text-rust hover:decoration-rust"
+								className="underline decoration-rule underline-offset-4 hover:text-forest hover:decoration-forest"
 								href={github}
 								rel="noopener noreferrer"
 								target="_blank"

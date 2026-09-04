@@ -14,15 +14,15 @@ export function SiteFooter() {
 				contact
 			</h2>
 			<p className="mb-4 text-sm">
-				the fastest way to reach me is email. i'm always glad to talk about
-				anything on this page, or about fpgas, verification, and memory in
-				general.
+				the fastest way to reach me is email, i check that far too often.
+				beware, i'll talk your ear off about anything on this page. i always
+				love seeing new linkedin connection requests too!
 			</p>
 			<ul className="space-y-1 text-sm">
 				{LINKS.map(({ label, href }) => (
 					<li key={href}>
 						<a
-							className="underline decoration-rule underline-offset-4 hover:text-rust hover:decoration-rust"
+							className="underline decoration-rule underline-offset-4 hover:text-forest hover:decoration-forest"
 							href={href}
 							rel="noopener noreferrer"
 							target={href.startsWith("mailto:") ? undefined : "_blank"}
@@ -34,6 +34,13 @@ export function SiteFooter() {
 			</ul>
 			<p className="mt-8 font-mono text-quiet text-xs">
 				© {new Date().getFullYear()} mary schwedatschenko
+				{" · "}
+				<a
+					className="underline decoration-rule underline-offset-4 hover:text-forest hover:decoration-forest"
+					href="/colophon"
+				>
+					colophon
+				</a>
 			</p>
 		</footer>
 	);
